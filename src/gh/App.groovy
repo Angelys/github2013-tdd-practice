@@ -1,17 +1,24 @@
 package gh
 
 import gh.tdd.FileProcessor
+import gh.tdd.IFileProcessor
 
 class App {
 
+    static IFileProcessor fileProcessor = new FileProcessor()
+
     public static void main(String[] args) {
-        assert args.length > 0
+        if (args.length < 1) {
+            throw new IllegalArgumentException()
+        }
 
-        // DI
-        // Pattern command
-        // Pattern iterator
+        fileProcessor.run(args[0])
+    }
 
-        FileProcessor fp = new FileProcessor()
-        fp.run(args[0])
+    public static setFileProcessor(IFileProcessor fileProcessor) {
+        this.fileProcessor = fileProcessor
     }
 }
+
+
+
